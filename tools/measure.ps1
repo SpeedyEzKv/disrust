@@ -1,13 +1,13 @@
 [CmdletBinding()]
 param(
-    [string]$Exe = (Join-Path $PSScriptRoot '..\target\release\noir-chat.exe'),
+    [string]$Exe = (Join-Path $PSScriptRoot '..\target\release\disrust.exe'),
     [ValidateRange(1, 10)][int]$Runs = 3,
     [switch]$Offline
 )
 
 $ErrorActionPreference = 'Stop'
 $exePath = (Resolve-Path -LiteralPath $Exe).Path
-$runRoot = Join-Path ([IO.Path]::GetTempPath()) ('noir-chat-check-' + [guid]::NewGuid().ToString('N'))
+$runRoot = Join-Path ([IO.Path]::GetTempPath()) ('disrust-check-' + [guid]::NewGuid().ToString('N'))
 New-Item -Path $runRoot -ItemType Directory | Out-Null
 
 function Read-Probe([string]$Path) {
@@ -131,7 +131,7 @@ try {
 } finally {
     $temp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\') + '\'
     $resolved = (Resolve-Path -LiteralPath $runRoot).Path
-    if ($resolved.StartsWith($temp + 'noir-chat-check-', [StringComparison]::OrdinalIgnoreCase)) {
+    if ($resolved.StartsWith($temp + 'disrust-check-', [StringComparison]::OrdinalIgnoreCase)) {
         # WebView2 children may still be flushing the isolated profile.
         for ($attempt = 0; $attempt -lt 8; $attempt++) {
             try {

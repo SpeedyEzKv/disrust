@@ -1,20 +1,20 @@
-# Noir Chat для Windows
+# Disrust для Windows
 
-<img src="assets/avatar.png" alt="Аватар Noir Chat" width="112">
+<img src="assets/avatar.png" alt="Аватар Disrust" width="112">
 
 Оболочка на Rust для веб-версии Discord. Открывает `https://discord.com/login` в отдельном тёмном окне через установленный в Windows Microsoft Edge WebView2. Друзья, серверы, каналы, переписки, вложения и поиск используют интерфейс и инфраструктуру Discord.
 
-[Скачать ZIP для Windows x64](https://github.com/SpeedyEzKv/noir-chat/releases/download/v0.1.0/Noir-Chat-windows-x64.zip) · [Релиз 0.1.0](https://github.com/SpeedyEzKv/noir-chat/releases/tag/v0.1.0)
+[Скачать ZIP для Windows x64](https://github.com/SpeedyEzKv/disrust/releases/download/v0.1.1/Disrust-windows-x64.zip) · [Релиз 0.1.1](https://github.com/SpeedyEzKv/disrust/releases/tag/v0.1.1)
 
 Это экспериментальный сторонний проект. Запуск формы входа нестабилен на проверенной машине. Сценарии после входа предстоит проверить.
 
 ## Запуск
 
-1. Распакуй ZIP и открой `dist\Noir-Chat.exe` на Windows x64. Если WebView2 отсутствует, установи [Evergreen Runtime](https://developer.microsoft.com/microsoft-edge/webview2/#download).
+1. Распакуй ZIP и открой `dist\Disrust.exe` на Windows x64. Если WebView2 отсутствует, установи [Evergreen Runtime](https://developer.microsoft.com/microsoft-edge/webview2/#download).
 2. Войди на странице Discord внутри окна. При необходимости пройди проверку Discord самостоятельно. Тему чатов можно изменить в настройках Discord.
 3. Для голосовой комнаты дай Discord разрешение на микрофон, когда Windows или WebView2 его запросит. Для демонстрации экрана проверь, что Discord показывает кнопку трансляции и окно выбора источника. Если функции нет в оболочке, пользуйся ею в поддерживаемом браузере или официальном приложении.
 
-Внешние ссылки, открытые пользователем, передаются в браузер Windows. Оболочка до двух раз повторяет HTTPS-загрузку, если после старта страница входа осталась пустой. Для ручного обновления используй Ctrl+R, F5 или пункт обновления в контекстном меню WebView2. Сессия сохраняется в отдельном профиле `%LOCALAPPDATA%\NoirChat\Profile`. Профиль содержит данные веб-сессии. Для выхода из учётной записи воспользуйся настройками Discord. Приложение использует хранилище WebView2 и не обрабатывает пароль или токены в Rust.
+Внешние ссылки, открытые пользователем, передаются в браузер Windows. Оболочка до двух раз повторяет HTTPS-загрузку, если после старта страница входа осталась пустой. Для ручного обновления используй Ctrl+R, F5 или пункт обновления в контекстном меню WebView2. Сессия сохраняется в отдельном профиле `%LOCALAPPDATA%\Disrust\Profile`. Профиль содержит данные веб-сессии. Для выхода из учётной записи воспользуйся настройками Discord. Приложение использует хранилище WebView2 и не обрабатывает пароль или токены в Rust.
 
 ## Архитектура и ограничения
 

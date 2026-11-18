@@ -36,9 +36,9 @@ use wry::{
     WebViewExtWindows,
 };
 
-const APP_NAME: &str = "Noir Chat";
+const APP_NAME: &str = "Disrust";
 const DISCORD: &str = "https://discord.com/login";
-const OFFLINE_PROBE: &str = "<!doctype html><meta charset=utf-8><title>Noir Chat offline check</title><style>html{color-scheme:dark;font:16px system-ui}</style><p>Noir Chat offline check</p>";
+const OFFLINE_PROBE: &str = "<!doctype html><meta charset=utf-8><title>Disrust offline check</title><style>html{color-scheme:dark;font:16px system-ui}</style><p>Disrust offline check</p>";
 
 enum AppEvent {
     Fullscreen(bool),
@@ -71,7 +71,7 @@ impl Diagnostic {
         let offline = match args.next().as_deref() {
             None => false,
             Some(flag) if flag == "--offline" => true,
-            _ => return Err("Использование: noir-chat --diagnose <папка> [--offline]".into()),
+            _ => return Err("Использование: disrust --diagnose <папка> [--offline]".into()),
         };
         if let Some(output) = output.filter(|_| args.next().is_none()) {
             Ok(Some(Self { output, offline }))
@@ -95,7 +95,7 @@ fn main() {
         result
     }) {
         let message = format!(
-            "Не удалось открыть Noir Chat. Проверь, что установлен Microsoft Edge WebView2 Runtime.\n\n{error}"
+            "Не удалось открыть Disrust. Проверь, что установлен Microsoft Edge WebView2 Runtime.\n\n{error}"
         );
         let wide: Vec<u16> = message.encode_utf16().chain([0]).collect();
         // The UTF-16 buffer stays alive for the duration of the dialog call.
@@ -103,7 +103,7 @@ fn main() {
             MessageBoxW(
                 None,
                 PCWSTR(wide.as_ptr()),
-                w!("Noir Chat"),
+                w!("Disrust"),
                 MB_OK | MB_ICONERROR,
             )
         };
@@ -116,7 +116,7 @@ fn run(started: Instant, diagnostic: Option<&Diagnostic>) -> Result<(), Box<dyn 
         Some(diagnostic) => diagnostic.output.join("profile"),
         None => {
             PathBuf::from(std::env::var_os("LOCALAPPDATA").ok_or("Не найдена папка LocalAppData")?)
-                .join("NoirChat")
+                .join("Disrust")
                 .join("Profile")
         }
     };
@@ -287,7 +287,7 @@ fn run(started: Instant, diagnostic: Option<&Diagnostic>) -> Result<(), Box<dyn 
                         MessageBoxW(
                             None,
                             PCWSTR(wide.as_ptr()),
-                            w!("Noir Chat"),
+                            w!("Disrust"),
                             MB_OK | MB_ICONERROR,
                         )
                     };
@@ -391,7 +391,7 @@ fn check_browser(webview: &wry::WebView, started: Instant, output: &Path, last_a
             notificationsApi: typeof Notification === "function",
             microphoneApi: typeof navigator.mediaDevices?.getUserMedia === "function",
             screenCaptureApi: typeof navigator.mediaDevices?.getDisplayMedia === "function",
-            offlinePage: document.title === "Noir Chat offline check"
+            offlinePage: document.title === "Disrust offline check"
         })"#,
         move |result| {
             let ready = result.contains("\"loginForm\":true") || result.contains("\"offlinePage\":true");

@@ -8,13 +8,13 @@ try {
     $meta = cargo metadata --locked --format-version 1 --filter-platform x86_64-pc-windows-msvc | ConvertFrom-Json
     if ($LASTEXITCODE) { throw 'Could not read Cargo dependencies.' }
 
-    $binary = 'target/release/noir-chat.exe'
+    $binary = 'target/release/disrust.exe'
     if (!(Test-Path -LiteralPath $binary -PathType Leaf)) {
         throw 'Run cargo build --release --locked before packaging.'
     }
 
     New-Item -Path dist -ItemType Directory -Force | Out-Null
-    $package = Join-Path $project 'dist/Noir-Chat-windows-x64.zip'
+    $package = Join-Path $project 'dist/Disrust-windows-x64.zip'
     $temporary = "$package.tmp"
     if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary }
 
@@ -23,7 +23,7 @@ try {
         $archive = [IO.Compression.ZipFile]::Open($temporary, [IO.Compression.ZipArchiveMode]::Create)
         try {
             $files = @{
-                'dist/Noir-Chat.exe' = $binary
+                'dist/Disrust.exe' = $binary
                 'README.md' = 'README.md'
                 'assets/avatar.png' = 'assets/avatar.png'
             }
@@ -55,7 +55,7 @@ try {
 
         $verify = [IO.Compression.ZipFile]::OpenRead($temporary)
         try {
-            $entry = $verify.GetEntry('dist/Noir-Chat.exe').Open()
+            $entry = $verify.GetEntry('dist/Disrust.exe').Open()
             $hash = [Security.Cryptography.SHA256]::Create()
             try {
                 $packed = [BitConverter]::ToString($hash.ComputeHash($entry)).Replace('-', '')

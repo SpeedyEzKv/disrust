@@ -338,6 +338,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "disrust"
+version = "0.1.1"
+dependencies = [
+ "tao",
+ "url",
+ "webview2-com",
+ "windows",
+ "winresource",
+ "wry",
+]
+
+[[package]]
 name = "dlopen2"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1058,18 +1070,6 @@ name = "new_debug_unreachable"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "650eef8c711430f1a879fdd01d4745a7deea475becfb90269c06775983bbf086"
-
-[[package]]
-name = "noir-chat"
-version = "0.1.0"
-dependencies = [
- "tao",
- "url",
- "webview2-com",
- "windows",
- "winresource",
- "wry",
-]
 
 [[package]]
 name = "num-conv"
